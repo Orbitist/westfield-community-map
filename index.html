@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
       <meta charset='utf-8' />
-      <title>Westfield Economic Development Projects</title>
+      <title>Westfield Community Map</title>
       <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
       <script defer src="https://pro.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-d84LGg2pm9KhR4mCAs3N29GQ4OYNy+K+FBHX8WhimHpPm86c839++MDABegrZ3gn" crossorigin="anonymous"></script>
@@ -34,6 +34,7 @@
   <body>
     <div id='map'></div>
 
+    <!-- Mobile Menu Toggles -->
     <div id="toggleFilters" class="btn btn-sm btn-secondary"><i class="fal fa-sliders-h-square"></i> Filters</div>
     <div id="toggleStats" class="btn btn-sm btn-secondary"><i class="fas fa-chart-line"></i> Stats</div>
 
@@ -43,68 +44,7 @@
     <!-- FILTERS -->
     <div class="filters-block">
       <div id='menu'></div>
-      <form id='project-filters'>
-        <div class="form-row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <select class="form-control" id="projectStatus">
-                <option>Any Project Status</option>
-                <option>Proposed</option>
-                <option>Underway</option>
-                <option>Complete</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="form-group">
-              <select class="form-control" id="projectType">
-                <option>Any Project Type</option>
-                <option>Priority Projects</option>
-                <option>Planning</option>
-                <option>Infrastructure</option>
-                <option>Marketing/Branding</option>
-                <option>New Development or Rehab</option>
-                <option>Public Improvement</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </form>
-      <p><small><span class="legend-dot proposed"></span> Proposed <span class="legend-dot underway"></span> Underway <span class="legend-dot complete"></span> Complete</small></p>
     </div>
-
-    <!-- FIGURES -->
-    <div class="figures-block">
-      <div class="row">
-        <div class="col-md-3">
-          <i class="fas fa-dollar-sign"></i> <div class="figure odometer" id="cost"></div>
-          <p>Project cost</p>
-        </div>
-        <div class="col-md-3">
-          <i class="fas fa-dollar-sign"></i> <div class="figure odometer" id="private"></div>
-          <p>Induced Private Investment</p>
-        </div>
-        <div class="col-md-3">
-          <i class="fas fa-dollar-sign"></i> <div class="figure odometer" id="local"></div>
-          <p>Local Investment</p>
-        </div>
-        <div class="col-md-3">
-          <i class="fas fa-dollar-sign"></i> <div class="figure odometer" id="grants"></div>
-          <p>Grant Funds</p>
-        </div>
-      </div>
-    </div><!-- /.figures-block -->
-
-    <!-- DRAWER -->
-  <div class="drawer">
-    <div class="pp"><i class="fas fa-arrow-circle-left"></i></div>
-    <div class="nn"><i class="fas fa-arrow-circle-right"></i></div>
-    <div class="col-md-12 text-center">
-      <button type="button" class="btn btn-sm btn-primary" id="drawer-toggle">Featured Projects</button>
-    </div>
-
-    <div class="drawer-content"></div>
-  </div>
 
   <!-- Spinner -->
   <div class="spinner">
@@ -113,10 +53,6 @@
 
     <script type="text/javascript" src="plugins/slick/slick.min.js"></script>
 
-    <script src='js/regions.js'></script>
-    <script src='js/municipal_regions.js'></script>
-    <script src='js/lwrp_region.js'></script>
-    <script src='js/vr_layer.js'></script>
     <script src='js/map.js'></script>
     <script src='js/stats.js'></script>
     <script src='js/drawer.js'></script>
