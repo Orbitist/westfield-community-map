@@ -22,7 +22,7 @@ map.on('load', function () {
   // Mouse hoverover popups on features
   map.on("mousemove", function (e) {
       var features = map.queryRenderedFeatures(e.point, {
-          layers: ["organizations", "points"]
+          layers: ["organizations", "points", "events"]
       });
 
       if (features.length && features[0].properties.title) {
@@ -47,9 +47,11 @@ map.on('load', function () {
      "type": "symbol",
      "source": "organizations",
      "layout": {
-            "icon-image": "suitcase-15"
+            "icon-image": "suitcase-15",
+            "icon-allow-overlap": true
           }
     });
+    toggleLayer('organizations');
     map.on('click', 'organizations', function (e) {
       var projectUrl = 'https://westfieldny.com' + e.features[0].properties.path;
       if (e.features[0].properties.image.length > 5) {
@@ -81,7 +83,8 @@ map.on('load', function () {
       "type": "symbol",
       "source": "points",
       "layout": {
-        "icon-image": "star-15"
+        "icon-image": "star-15",
+        "icon-allow-overlap": true
       }
      });
      map.on('click', 'points', function (e) {
@@ -105,10 +108,45 @@ map.on('load', function () {
          map.getCanvas().style.cursor = '';
      });
 
+     // FEATURED EVENTS
+     map.addSource("events", {
+       "type": "geojson",
+       "data": "https://westfieldny.com/api/geojson/featured_events"
+     });
+     map.addLayer({
+       "id": "events",
+       "type": "symbol",
+       "source": "events",
+       "layout": {
+         "icon-image": "karaoke-15",
+         "icon-allow-overlap": true
+       }
+      });
+      map.on('click', 'events', function (e) {
+        var projectUrl = 'https://westfieldny.com' + e.features[0].properties.path;
+        if (e.features[0].properties.image.length > 5) {
+          var projectImg = '<img src="https://westfieldny.com' + e.features[0].properties.image + '" alt="' + e.features[0].properties.name + '" class="card-img-top">';
+        } else {
+          var projectImg = '';
+        }
+        var projectInfo = e.features[0].properties.when + ' | ' + e.features[0].properties.where;
+        var projectLabel = e.features[0].properties.name;
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML('<div class="card"><a href="' + projectUrl + '" target="_parent">' + projectImg + '</a><div class="card-body"><a href="' + projectUrl + '" target="_parent"><p class="lead card-title">' + projectLabel + '</p></a><p class="card-text">' + projectInfo + '</p></div></div>')
+            .addTo(map);
+      });
+      map.on('mouseenter', 'events', function () {
+          map.getCanvas().style.cursor = 'pointer';
+      });
+      map.on('mouseleave', 'events', function () {
+          map.getCanvas().style.cursor = '';
+      });
+
 });
 
 // TOGGLERS
-var toggleableLayers = [{label:'Featured Businesses', id:'organizations', defaultState:'checked'}, {label:'Points of Interest', id:'points', defaultState:'checked'}];
+var toggleableLayers = [{label:'Points of Interest', id:'points', defaultState:'checked'}, {label:'Upcoming Events', id:'events', defaultState:'checked'}, {label:'Businesses', id:'organizations', defaultState:''}];
 
 function toggleLayer(layerId) {
   var clickedLayer = layerId;
