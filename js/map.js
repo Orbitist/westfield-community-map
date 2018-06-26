@@ -83,7 +83,7 @@ map.on('load', function () {
       "type": "symbol",
       "source": "points",
       "layout": {
-        "icon-image": "star-15",
+        "icon-image": "map-marker-15",
         "icon-allow-overlap": true
       }
      });
@@ -118,7 +118,7 @@ map.on('load', function () {
        "type": "symbol",
        "source": "events",
        "layout": {
-         "icon-image": "karaoke-15",
+         "icon-image": "star-15",
          "icon-allow-overlap": true
        }
       });
