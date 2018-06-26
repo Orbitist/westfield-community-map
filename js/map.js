@@ -51,7 +51,6 @@ map.on('load', function () {
             "icon-allow-overlap": true
           }
     });
-    toggleLayer('organizations');
     map.on('click', 'organizations', function (e) {
       var projectUrl = 'https://westfieldny.com' + e.features[0].properties.path;
       if (e.features[0].properties.image.length > 5) {
@@ -146,7 +145,7 @@ map.on('load', function () {
 });
 
 // TOGGLERS
-var toggleableLayers = [{label:'Points of Interest', id:'points', defaultState:'checked'}, {label:'Upcoming Events', id:'events', defaultState:'checked'}, {label:'Businesses', id:'organizations', defaultState:''}];
+var toggleableLayers = [{label:'Points of Interest', id:'points', defaultState:'checked'}, {label:'Upcoming Events', id:'events', defaultState:'checked'}, {label:'Businesses', id:'organizations', defaultState:'checked'}];
 
 function toggleLayer(layerId) {
   var clickedLayer = layerId;
